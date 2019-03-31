@@ -17,8 +17,11 @@ interface GithubService {
     @GET("search/repositories")
     fun getRepositories(@Query(QUERY_PARAMETER_KEY) q: String): Observable<RepositoriesResponseBody>
 
-    @GET("repos/{path}/contributors")
-    fun getContributors(@Path("path") contributorsLink: String): Observable<List<Contributor>>
+    @GET("repos/{path1}/{path2}/contributors")
+    fun getContributors(
+        @Path("path1") contributorsLink: String,
+        @Path("path2") contributorsLink2: String
+    ): Observable<List<Contributor>>
 
     @GET("users/{loginName}/repos")
     fun getContributorRepos(@Path("loginName") loginName: String): Observable<RepositoriesResponseBody>

@@ -13,30 +13,31 @@ import java.text.ParseException
  * inflate the image in the [ImageView] if the provided [url] is valid.
  */
 @BindingAdapter("app:srcUrl")
-fun ImageView.setUrlSource(url: String) {
-
-    fun imagePlaceholderResource(): Int {
-        return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            android.R.drawable.ic_menu_recent_history
-        } else {
-            R.drawable.image_load_placeholder
+fun ImageView.setUrlSource(url: String?) {
+    url?.let {
+        fun imagePlaceholderResource(): Int {
+            return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                android.R.drawable.ic_menu_recent_history
+            } else {
+                R.drawable.image_load_placeholder
+            }
         }
-    }
 
-    fun imageFailureResource(): Int {
-        return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            android.R.drawable.ic_delete
-        } else {
-            R.drawable.image_load_failure
+        fun imageFailureResource(): Int {
+            return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                android.R.drawable.ic_delete
+            } else {
+                R.drawable.image_load_failure
+            }
         }
-    }
 
 
-    // Making sure that the provided HTML_URL is valid before loading the image.
-    if (url.isValidUrl()) {
-        Glide.with(context).load(url).placeholder(imagePlaceholderResource()).into(this)
-    } else {
-        Glide.with(context).load(imageFailureResource()).into(this)
+        // Making sure that the provided HTML_URL is valid before loading the image.
+        if (url.isValidUrl()) {
+            Glide.with(context).load(url).placeholder(imagePlaceholderResource()).into(this)
+        } else {
+            Glide.with(context).load(imageFailureResource()).into(this)
+        }
     }
 }
 

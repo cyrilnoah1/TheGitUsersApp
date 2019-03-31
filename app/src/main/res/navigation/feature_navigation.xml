@@ -8,15 +8,21 @@
               android:name="com.rba.thegitusers.features.repository.repositories.RepositoriesFragment"
               android:label="fragment_repositories" tools:layout="@layout/fragment_repositories">
         <action android:id="@+id/action_repositoriesFragment_to_repositoryFragment"
-                app:destination="@id/repositoryFragment"/>
+                app:destination="@id/repositoryFragment" app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <fragment android:id="@+id/repositoryFragment"
               android:name="com.rba.thegitusers.features.repository.repository.RepositoryFragment"
               android:label="fragment_repository" tools:layout="@layout/fragment_repository">
         <action android:id="@+id/action_repositoryFragment_to_contributorFragment"
-                app:destination="@id/contributorFragment"/>
+                app:destination="@id/contributorFragment" app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action android:id="@+id/action_repositoryFragment_to_projectLinkFragment"
-                app:destination="@id/projectLinkFragment"/>
+                app:destination="@id/projectLinkFragment" app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <fragment android:id="@+id/contributorFragment"
               android:name="com.rba.thegitusers.features.contributor.contributor.ContributorFragment"

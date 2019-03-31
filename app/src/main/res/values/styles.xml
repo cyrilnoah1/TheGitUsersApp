@@ -21,7 +21,16 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="HomeToolbarTitleStyle">
+    <style name="TitleContentTextStyle">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Subhead</item>
+        <item name="android:layout_marginLeft">@dimen/dp5</item>
+        <item name="android:layout_marginStart">@dimen/dp5</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ToolbarTitleStyle">
         <item name="android:drawablePadding">@dimen/dp10</item>
         <item name="android:fontFamily">@font/montserrat_regular</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Headline</item>
@@ -32,6 +41,12 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:textColorHint">@color/colorAccent</item>
         <item name="android:layout_height">@dimen/dp50</item>
+    </style>
+    <style name="TitleTextStyle">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>

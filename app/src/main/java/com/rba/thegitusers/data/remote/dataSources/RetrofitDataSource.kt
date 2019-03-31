@@ -62,8 +62,9 @@ class RetrofitDataSource : RemoteGitDataSource {
             disposable.takeIf { disp -> !disp.isDisposed }?.dispose()
         }
 
+        val splitted = repoFullName.split("/")
         disposable.add(
-            service.getContributors(repoFullName)
+            service.getContributors(splitted[0], splitted[1])
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(handleSuccess, handleError)

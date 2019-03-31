@@ -72,6 +72,8 @@ dependencies {
     implementation "com.google.code.gson:gson:$gson_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     //
     // RxJava dependencies.
     implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rxjava_retrofit_adapter_version"

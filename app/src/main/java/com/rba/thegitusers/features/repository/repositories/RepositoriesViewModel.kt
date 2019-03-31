@@ -12,9 +12,10 @@ import kotlinx.coroutines.launch
 
 class RepositoriesViewModel(private val app: Application) : BaseAndroidViewModel(app) {
 
-    private val githubRepo = GithubRepo()
     val obsError = MutableLiveData<String>()
     val obsIsDataLoading = MutableLiveData<Boolean>()
+
+    private val githubRepo = GithubRepo()
 
     fun fetchRepositories(searchKey: String) {
         obsIsDataLoading.postValue(true)

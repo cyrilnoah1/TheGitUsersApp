@@ -23,6 +23,7 @@
     >
 
         <android.support.constraint.ConstraintLayout
+                android:id="@+id/clRoot"
                 android:clickable="true"
                 android:focusable="true"
                 android:background="?selectableItemBackground"
@@ -48,13 +49,16 @@
                     android:layout_marginLeft="@dimen/dp10"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/ivOwnerImage"
-                    style="@style/HeadingTextStyle" app:layout_constraintBottom_toTopOf="@+id/tvFullNameHeading"/>
+                    style="@style/HeadingTextStyle"
+                    app:layout_constraintBottom_toTopOf="@+id/tvFullNameHeading"/>
 
             <!--NAME CONTENT-->
             <TextView
                     android:id="@+id/tvNameContent"
                     android:text="@{repo.name}"
                     tools:text="thegitusers"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tvNameHeading"
@@ -80,9 +84,13 @@
                     android:layout_marginStart="@dimen/dp5"
                     android:layout_marginLeft="@dimen/dp5"
                     style="@style/ContentTextStyle"
+                    app:layout_constraintHorizontal_bias="0"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     app:layout_constraintBottom_toBottomOf="@+id/tvFullNameHeading"
                     app:layout_constraintTop_toTopOf="@+id/tvFullNameHeading"
-                    app:layout_constraintStart_toEndOf="@+id/tvFullNameHeading"/>
+                    app:layout_constraintStart_toEndOf="@+id/tvFullNameHeading"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
 
             <!--WATCHER COUNT HEADING-->
@@ -103,6 +111,8 @@
                     tools:text="12"
                     android:layout_marginStart="@dimen/dp5"
                     android:layout_marginLeft="@dimen/dp5"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     app:layout_constraintHorizontal_bias="0.0"
                     style="@style/ContentTextStyle" app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tvWatcherCountHeading"

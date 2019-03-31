@@ -12,7 +12,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.rba.thegitusers.R
+import com.rba.thegitusers.common.BUNDLE_REPO_FULL_NAME
+import com.rba.thegitusers.common.BUNDLE_REPO_ID
 import com.rba.thegitusers.data.local.models.Repository
 import com.rba.thegitusers.features.HomeActivity
 import kotlinx.android.synthetic.main.fragment_repositories.*
@@ -64,14 +67,17 @@ class RepositoriesFragment : Fragment(), RepositoriesAdapter.ItemClickCallback {
     }
 
     override fun onItemClick(repo: Repository) {
-
+        val data = Bundle()
+        data.putInt(BUNDLE_REPO_ID, repo.id)
+        data.putString(BUNDLE_REPO_FULL_NAME, repo.fullName)
+        findNavController().navigate(R.id.action_repositoriesFragment_to_repositoryFragment, data)
     }
 
     private fun setupSearch() {
         etSearchBar?.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 if (!etSearchBar?.text.isNullOrBlank()) {
-                    etSearchBar?.text?.toString()?.run {
+                    etSearchBar?.text?.toString()?.trim()?.run {
                         searchKey = this
                         setupRepositories()
                     }

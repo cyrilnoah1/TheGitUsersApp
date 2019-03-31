@@ -33,7 +33,7 @@ class RepositoriesAdapter(
 
         fun bind(repo: Repository) {
             item.repo = repo
-            item.mcvRoot.setOnClickListener { callback?.onItemClick(repo) }
+            item.clRoot.setOnClickListener { callback?.onItemClick(repo) }
         }
     }
 
