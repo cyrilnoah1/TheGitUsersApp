@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TheGitUsers</string>
+    <string name="no_internt_msg">No network connection</string>
 </resources>
