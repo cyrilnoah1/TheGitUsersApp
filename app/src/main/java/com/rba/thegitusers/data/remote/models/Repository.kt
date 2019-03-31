@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.rba.thegitusers.data.local.models.Contributor
 
 data class Repository(
-    @SerializedName(ID) val id: Int?,
+    @SerializedName(ID) val id: Int,
     @SerializedName(NAME) val name: String?,
     @SerializedName(OWNER) val owner: Contributor?,
     @SerializedName(DESCRIPTION) val description: String?,

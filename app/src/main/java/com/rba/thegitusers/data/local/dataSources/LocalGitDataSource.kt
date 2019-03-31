@@ -1,5 +1,7 @@
 package com.rba.thegitusers.data.local.dataSources
 
+import android.arch.lifecycle.LiveData
+import android.arch.paging.PagedList
 import com.rba.thegitusers.data.local.models.Contributor
 import com.rba.thegitusers.data.local.models.Repository
 
@@ -9,7 +11,19 @@ import com.rba.thegitusers.data.local.models.Repository
  */
 interface LocalGitDataSource {
 
+    fun saveRepository(repository: Repository) {
+        throw IMPLEMENTATION_EXCP
+    }
+
+    fun saveRepositories(repositories: List<Repository>) {
+        throw IMPLEMENTATION_EXCP
+    }
+
     fun getRepositories(searchKey: String): List<Repository> {
+        throw IMPLEMENTATION_EXCP
+    }
+
+    fun getRepositoriesPaginated(searchKey: String): LiveData<PagedList<Repository>> {
         throw IMPLEMENTATION_EXCP
     }
 
@@ -17,7 +31,16 @@ interface LocalGitDataSource {
         throw IMPLEMENTATION_EXCP
     }
 
-    fun getContributors(): List<Contributor> {
+
+    fun saveContributor(contributor: Contributor) {
+        throw IMPLEMENTATION_EXCP
+    }
+
+    fun saveContributors(contributors: List<Contributor>) {
+        throw IMPLEMENTATION_EXCP
+    }
+
+    fun getContributors(repoFullName: String): List<Contributor> {
         throw IMPLEMENTATION_EXCP
     }
 

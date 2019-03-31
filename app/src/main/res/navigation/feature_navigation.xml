@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/feature_navigation"
+            app:startDestination="@id/repositoriesFragment">
+
+    <fragment android:id="@+id/repositoriesFragment"
+              android:name="com.rba.thegitusers.features.repository.repositories.RepositoriesFragment"
+              android:label="fragment_repositories" tools:layout="@layout/fragment_repositories">
+        <action android:id="@+id/action_repositoriesFragment_to_repositoryFragment"
+                app:destination="@id/repositoryFragment"/>
+    </fragment>
+    <fragment android:id="@+id/repositoryFragment"
+              android:name="com.rba.thegitusers.features.repository.repository.RepositoryFragment"
+              android:label="fragment_repository" tools:layout="@layout/fragment_repository">
+        <action android:id="@+id/action_repositoryFragment_to_contributorFragment"
+                app:destination="@id/contributorFragment"/>
+        <action android:id="@+id/action_repositoryFragment_to_projectLinkFragment"
+                app:destination="@id/projectLinkFragment"/>
+    </fragment>
+    <fragment android:id="@+id/contributorFragment"
+              android:name="com.rba.thegitusers.features.contributor.contributor.ContributorFragment"
+              android:label="fragment_contributor" tools:layout="@layout/fragment_contributor"/>
+    <fragment android:id="@+id/projectLinkFragment"
+              android:name="com.rba.thegitusers.features.repository.project.ProjectLinkFragment"
+              android:label="fragment_project_link" tools:layout="@layout/fragment_project_link"/>
+</navigation>
