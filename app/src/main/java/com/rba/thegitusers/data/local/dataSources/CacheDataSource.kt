@@ -21,8 +21,16 @@ class CacheDataSource : LocalGitDataSource {
         return pageBuilder.build()
     }
 
+    override fun getRepository(id: Int): Repository {
+        return cache.getRepo(id)
+    }
+
     override fun saveContributors(contributors: List<Contributor>) {
         cache.saveContributors(contributors)
+    }
+
+    override fun getContributor(id: Int): Contributor {
+        return cache.getContributor(id)
     }
 
     override fun getContributors(repoFullName: String): List<Contributor> {

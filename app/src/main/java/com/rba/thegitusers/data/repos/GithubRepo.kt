@@ -7,6 +7,10 @@ import com.rba.thegitusers.data.remote.dataSources.RemoteGitDataSource
 import com.rba.thegitusers.data.remote.dataSources.RetrofitDataSource
 import com.rba.thegitusers.data.remote.models.Contributor
 import com.rba.thegitusers.data.remote.models.Repository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import com.rba.thegitusers.data.local.models.Repository as LocalRepository
@@ -16,6 +20,9 @@ class GithubRepo {
 
     private val cache = CacheDataSource()
     private val remote = RetrofitDataSource()
+
+    private val job = SupervisorJob()
+    private val ioScope = CoroutineScope(Dispatchers.IO)
 
     /**
      * Function to fetch and store the repositories in the cache.
@@ -27,19 +34,25 @@ class GithubRepo {
             override fun onSuccess(repos: List<Repository>) {
                 // Converting to remote model to local model and saving
                 // it in the cache.
-                cache.saveRepositories(repos.map { repo ->
-                    LocalRepository(
-                        id = repo.id,
-                        name = repo.name ?: EMPTY_STRING,
-                        ownerImage = repo.owner?.profilePicUrl ?: EMPTY_STRING,
-                        description = repo.description ?: EMPTY_STRING,
-                        fullName = repo.fullName ?: EMPTY_STRING,
-                        watchersCount = repo.watchersCount ?: 0,
-                        url = repo.url ?: EMPTY_STRING,
-                        commitsUrl = repo.commitsUrl ?: EMPTY_STRING,
-                        contributorsUrl = repo.contributorsUrl ?: EMPTY_STRING
-                    )
-                })
+                ioScope.launch {
+                    cache.saveRepositories(repos.map { repo ->
+                        LocalRepository(
+                            id = repo.id,
+                            name = repo.name ?: EMPTY_STRING,
+                            ownerImage = repo.owner?.profilePicUrl ?: EMPTY_STRING,
+                            description = repo.description ?: EMPTY_STRING,
+                            fullName = repo.fullName ?: EMPTY_STRING,
+                            watchersCount = repo.watchersCount ?: 0,
+                            htmlUrl = repo.htmlUrl ?: EMPTY_STRING,
+                            hasDownloads = repo.hasDownloads ?: false,
+                            hasProjects = repo.hasProjects ?: false,
+                            hasIssues = repo.hasIssues ?: false,
+                            hasWiki = repo.hasWiki ?: false,
+                            commitsUrl = repo.commitsUrl ?: EMPTY_STRING,
+                            contributorsUrl = repo.contributorsUrl ?: EMPTY_STRING
+                        )
+                    })
+                }
 
                 it.resume(true)
             }
@@ -72,15 +85,17 @@ class GithubRepo {
             override fun onSuccess(contributors: List<Contributor>) {
                 // Converting to remote model to local model and saving
                 // it in the cache.
-                cache.saveContributors(contributors.map { cont ->
-                    LocalContributor(
-                        id = cont.id,
-                        loginName = cont.loginName ?: EMPTY_STRING,
-                        profilePicUrl = cont.profilePicUrl ?: EMPTY_STRING,
-                        repoFullName = repoFullName,
-                        reposLink = cont.reposLink ?: EMPTY_STRING
-                    )
-                })
+                ioScope.launch {
+                    cache.saveContributors(contributors.map { cont ->
+                        LocalContributor(
+                            id = cont.id,
+                            loginName = cont.loginName ?: EMPTY_STRING,
+                            profilePicUrl = cont.profilePicUrl ?: EMPTY_STRING,
+                            repoFullName = repoFullName,
+                            reposLink = cont.reposLink ?: EMPTY_STRING
+                        )
+                    })
+                }
 
                 it.resume(true)
             }

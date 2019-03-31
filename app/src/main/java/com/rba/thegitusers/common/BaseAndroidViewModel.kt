@@ -25,6 +25,11 @@ abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel
      */
     val uiScope = CoroutineScope(job + Dispatchers.Main)
 
+    /**
+     * [CoroutineScope] that dispatches the task on the [Dispatchers.IO] thread by default.
+     */
+    val ioScope = CoroutineScope(job + Dispatchers.IO)
+
     override fun onCleared() {
         super.onCleared()
         // Cancelling all the children of the SupervisorJob at once if the

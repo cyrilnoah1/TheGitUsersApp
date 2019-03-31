@@ -2,10 +2,11 @@ package com.rba.thegitusers.data.local.models
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 
 @Entity(tableName = "contributor")
 data class Contributor(
-    @ColumnInfo(name = ID) val id: Int,
+    @ColumnInfo(name = ID) @PrimaryKey val id: Int,
     @ColumnInfo(name = LOGIN) val loginName: String,
     @ColumnInfo(name = AVATAR_IMAGE) val profilePicUrl: String,
     @ColumnInfo(name = REPO_FULL_NAME) val repoFullName: String,

@@ -23,9 +23,9 @@ interface GitHubDao {
     fun saveRepos(repos: List<Repository>)
 
     @Query("SELECT * FROM repository WHERE id = :id")
-    fun getRepo(id: String): Repository
+    fun getRepo(id: Int): Repository
 
-    @Query("SELECT * FROM repository WHERE name LIKE :searchKey")
+    @Query("SELECT * FROM repository WHERE name LIKE :searchKey ORDER BY watchers_count DESC")
     fun getRepos(searchKey: String): DataSource.Factory<Int, Repository>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -35,7 +35,7 @@ interface GitHubDao {
     fun saveContributors(contributors: List<Contributor>)
 
     @Query("SELECT * FROM contributor WHERE id = :id")
-    fun getContributor(id: Int)
+    fun getContributor(id: Int): Contributor
 
     @Query("SELECT * FROM contributor WHERE repo_full_name = :repoFullName")
     fun getContributors(repoFullName: String): List<Contributor>

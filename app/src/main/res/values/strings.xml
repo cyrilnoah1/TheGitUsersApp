@@ -4,4 +4,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="repository_retrieval_failure_msg">Failed to get repositories. Please try again</string>
+    <string name="name_heading">Name:</string>
+    <string name="full_name_heading">Full Name:</string>
+    <string name="watcher_count_heading">Watcher Count:</string>
+    <string name="search_repository">Search repository</string>
 </resources>

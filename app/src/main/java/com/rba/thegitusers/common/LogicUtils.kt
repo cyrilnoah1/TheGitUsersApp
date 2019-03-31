@@ -18,7 +18,7 @@ fun String.isValidUrl(): Boolean {
         URL(this)
         true
     } catch (ex: MalformedURLException) {
-        Log.e("LogicUtils", "The provided url: \"$this\" is invalid.")
+        Log.e("LogicUtils", "The provided htmlUrl: \"$this\" is invalid.")
         false
     }
 }

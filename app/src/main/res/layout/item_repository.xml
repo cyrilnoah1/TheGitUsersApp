@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable name="repo" type="com.rba.thegitusers.data.local.models.Repository"/>
+
+    </data>
+
+    <android.support.design.card.MaterialCardView
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginStart="@dimen/dp5"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_marginRight="@dimen/dp5"
+            android:layout_marginEnd="@dimen/dp5"
+            android:layout_marginBottom="@dimen/dp5"
+            android:layout_width="match_parent"
+            android:id="@+id/mcvRoot"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/dp20"
+    >
+
+        <android.support.constraint.ConstraintLayout
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <!--OWNER PROFILE IMAGE-->
+            <ImageView
+                    android:id="@+id/ivOwnerImage"
+                    android:layout_width="@dimen/image_item_height"
+                    android:layout_height="@dimen/image_item_width"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcUrl="@{repo.ownerImage}"
+                    tools:src="@drawable/image_load_placeholder"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <!--NAME HEADING-->
+            <TextView
+                    android:id="@+id/tvNameHeading"
+                    android:text="@string/name_heading"
+                    android:layout_marginStart="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ivOwnerImage"
+                    style="@style/HeadingTextStyle" app:layout_constraintBottom_toTopOf="@+id/tvFullNameHeading"/>
+
+            <!--NAME CONTENT-->
+            <TextView
+                    android:id="@+id/tvNameContent"
+                    android:text="@{repo.name}"
+                    tools:text="thegitusers"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvNameHeading"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tvNameHeading"
+                    style="@style/ContentTextStyle"/>
+
+            <!--FULL NAME HEADING-->
+            <TextView
+                    android:id="@+id/tvFullNameHeading"
+                    android:text="@string/full_name_heading"
+                    android:layout_marginStart="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    style="@style/HeadingTextStyle"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNameHeading"
+                    app:layout_constraintStart_toEndOf="@+id/ivOwnerImage"
+                    app:layout_constraintBottom_toTopOf="@+id/tvWatcherCountHeading"/>
+
+            <!--FULL NAME CONTENT-->
+            <TextView
+                    android:id="@+id/tvFullNameContent"
+                    android:text="@{repo.fullName}"
+                    tools:text="thegitusers/cyrilnoah"
+                    android:layout_marginStart="@dimen/dp5"
+                    android:layout_marginLeft="@dimen/dp5"
+                    style="@style/ContentTextStyle"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvFullNameHeading"
+                    app:layout_constraintTop_toTopOf="@+id/tvFullNameHeading"
+                    app:layout_constraintStart_toEndOf="@+id/tvFullNameHeading"/>
+
+
+            <!--WATCHER COUNT HEADING-->
+            <TextView
+                    android:id="@+id/tvWatcherCountHeading"
+                    android:text="@string/watcher_count_heading"
+                    style="@style/HeadingTextStyle"
+                    android:layout_marginStart="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    app:layout_constraintTop_toBottomOf="@+id/tvFullNameHeading"
+                    app:layout_constraintStart_toEndOf="@+id/ivOwnerImage"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <!--WATCHER COUNT CONTENT-->
+            <TextView
+                    android:id="@+id/tvWatcherCountContent"
+                    android:text='@{"" + repo.watchersCount}'
+                    tools:text="12"
+                    android:layout_marginStart="@dimen/dp5"
+                    android:layout_marginLeft="@dimen/dp5"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    style="@style/ContentTextStyle" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvWatcherCountHeading"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvWatcherCountHeading"
+                    app:layout_constraintTop_toTopOf="@+id/tvWatcherCountHeading"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.design.card.MaterialCardView>
+</layout>

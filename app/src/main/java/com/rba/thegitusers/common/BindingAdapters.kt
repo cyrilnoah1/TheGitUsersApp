@@ -32,7 +32,7 @@ fun ImageView.setUrlSource(url: String) {
     }
 
 
-    // Making sure that the provided URL is valid before loading the image.
+    // Making sure that the provided HTML_URL is valid before loading the image.
     if (url.isValidUrl()) {
         Glide.with(context).load(url).placeholder(imagePlaceholderResource()).into(this)
     } else {
