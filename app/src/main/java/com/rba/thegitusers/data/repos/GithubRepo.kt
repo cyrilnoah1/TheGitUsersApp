@@ -40,6 +40,48 @@ class GithubRepo {
                             id = repo.id,
                             name = repo.name ?: EMPTY_STRING,
                             ownerImage = repo.owner?.profilePicUrl ?: EMPTY_STRING,
+                            ownerId = repo.owner?.id ?: -1,
+                            description = repo.description ?: EMPTY_STRING,
+                            fullName = repo.fullName ?: EMPTY_STRING,
+                            watchersCount = repo.watchersCount ?: 0,
+                            htmlUrl = repo.htmlUrl ?: EMPTY_STRING,
+                            hasDownloads = repo.hasDownloads ?: false,
+                            hasProjects = repo.hasProjects ?: false,
+                            hasIssues = repo.hasIssues ?: false,
+                            hasWiki = repo.hasWiki ?: false,
+                            commitsUrl = repo.commitsUrl ?: EMPTY_STRING,
+                            contributorsUrl = repo.contributorsUrl ?: EMPTY_STRING
+                        )
+                    })
+                }
+
+                it.resume(true)
+            }
+
+            override fun onFailure() {
+                Log.e(TAG, "Failed to fetch for the data.")
+                it.resume(false)
+            }
+        })
+    }
+
+    /**
+     * Function to fetch and store the repositories in the cache.
+     */
+    suspend fun fetchRepositoriesByContributor(loginName: String): Boolean = suspendCoroutine {
+
+        remote.getContributorRepos(loginName, object : RemoteGitDataSource.RepositoryResponse {
+
+            override fun onSuccess(repos: List<Repository>) {
+                // Converting to remote model to local model and saving
+                // it in the cache.
+                ioScope.launch {
+                    cache.saveRepositories(repos.map { repo ->
+                        LocalRepository(
+                            id = repo.id,
+                            name = repo.name ?: EMPTY_STRING,
+                            ownerImage = repo.owner?.profilePicUrl ?: EMPTY_STRING,
+                            ownerId = repo.owner?.id ?: -1,
                             description = repo.description ?: EMPTY_STRING,
                             fullName = repo.fullName ?: EMPTY_STRING,
                             watchersCount = repo.watchersCount ?: 0,
@@ -74,6 +116,8 @@ class GithubRepo {
      * Function to retrieve required [LocalRepository] based on the [id] from the cache.
      */
     fun getRepository(id: Int) = cache.getRepository(id)
+
+    fun getReposByContriutor(contribId: Int) = cache.getRepositoriesByOwnerId(contribId)
 
     /**
      * Function to fetch for the required contributors for a repository.
@@ -111,6 +155,7 @@ class GithubRepo {
      * Function to retrive [LocalContributor]s from the cache.
      */
     fun getContributors(repoFullName: String) = cache.getContributors(repoFullName)
+
 
     /**
      * Function to retrieve required [LocalContributor] based on the [id] from the cache.

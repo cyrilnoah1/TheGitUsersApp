@@ -19,7 +19,7 @@ interface LocalGitDataSource {
         throw IMPLEMENTATION_EXCP
     }
 
-    fun getRepositories(searchKey: String): List<Repository> {
+    fun getRepositoriesByOwnerId(ownerId: Int): List<Repository> {
         throw IMPLEMENTATION_EXCP
     }
 

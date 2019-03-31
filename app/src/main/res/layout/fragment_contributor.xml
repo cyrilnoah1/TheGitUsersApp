@@ -1,11 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:clickable="true"
-             android:focusable="true"
-             tools:context=".features.contributor.contributor.ContributorFragment">
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:bind="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable name="viewModel" type="com.rba.thegitusers.features.contributor.contributor.ContributorViewModel"/>
+        <variable name="title" type="String"/>
+    </data>
 
-</FrameLayout>
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            tools:context=".features.contributor.contributor.ContributorFragment">
+
+        <include android:id="@+id/plToolbar"
+                 layout="@layout/partial_title_toolbar"
+                 app:layout_constraintTop_toTopOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 bind:title="@{title}"
+                 app:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageView
+                android:id="@+id/ivUserImage"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp200"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:scaleType="centerCrop"
+                app:srcUrl="@{viewModel.obsContributor.profilePicUrl}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/plToolbar"/>
+
+        <!--NAME TITLE-->
+        <TextView
+                android:id="@+id/tvNameTitle"
+                android:layout_marginTop="@dimen/dp10"
+                android:text="@string/repo_list_title"
+                style="@style/TitleTextStyle"
+                app:layout_constraintStart_toStartOf="@+id/glStartHori"
+                app:layout_constraintTop_toBottomOf="@+id/ivUserImage"/>
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvContributorRepos"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:requiresFadingEdge="vertical"
+                android:layout_marginTop="@dimen/dp10"
+                android:fadingEdge="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNameTitle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/glStartHori"/>
+
+        <android.support.constraint.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/glStartHori"
+                app:layout_constraintGuide_percent="0.05"
+                android:orientation="vertical"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

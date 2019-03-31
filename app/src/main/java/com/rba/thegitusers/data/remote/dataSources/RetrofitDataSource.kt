@@ -2,6 +2,7 @@ package com.rba.thegitusers.data.remote.dataSources
 
 import android.util.Log
 import com.rba.thegitusers.data.remote.models.Contributor
+import com.rba.thegitusers.data.remote.models.Repository
 import com.rba.thegitusers.data.remote.service.GithubService
 import com.rba.thegitusers.data.remote.service.RepositoriesResponseBody
 import com.rba.thegitusers.data.remote.service.ServiceProvider
@@ -74,9 +75,9 @@ class RetrofitDataSource : RemoteGitDataSource {
     override fun getContributorRepos(loginName: String, callback: RemoteGitDataSource.RepositoryResponse) {
         val disposable = CompositeDisposable()
 
-        val handleSuccess = Consumer<RepositoriesResponseBody> {
-            if (it?.repositories != null) {
-                it.repositories.let { repos -> callback.onSuccess(repos) }
+        val handleSuccess = Consumer<List<Repository>> {
+            if (it != null) {
+                callback.onSuccess(it)
             } else {
                 Log.e(TAG, RESPONSE_FAILURE_MESSAGE)
                 callback.onFailure()

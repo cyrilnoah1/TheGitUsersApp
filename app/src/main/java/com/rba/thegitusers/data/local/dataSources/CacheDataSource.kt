@@ -25,6 +25,10 @@ class CacheDataSource : LocalGitDataSource {
         return cache.getRepo(id)
     }
 
+    override fun getRepositoriesByOwnerId(ownerId: Int): List<Repository> {
+        return cache.getReposByOwnerId(ownerId)
+    }
+
     override fun saveContributors(contributors: List<Contributor>) {
         cache.saveContributors(contributors)
     }

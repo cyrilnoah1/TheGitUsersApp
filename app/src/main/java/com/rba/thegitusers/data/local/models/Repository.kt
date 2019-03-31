@@ -9,6 +9,7 @@ data class Repository(
     @ColumnInfo(name = ID) @PrimaryKey val id: Int,
     @ColumnInfo(name = NAME) val name: String,
     @ColumnInfo(name = OWNER_IMAGE) val ownerImage: String,
+    @ColumnInfo(name = OWNER_ID) val ownerId: Int,
     @ColumnInfo(name = DESCRIPTION) val description: String,
     @ColumnInfo(name = FULL_NAME) val fullName: String,
     @ColumnInfo(name = HAS_DOWNLOADS) val hasDownloads: Boolean?,
@@ -29,6 +30,7 @@ data class Repository(
         const val WATCHERS_COUNT = "watchers_count"
         const val HTML_URL = "html_url"
         const val OWNER_IMAGE = "owner"
+        const val OWNER_ID = "owner_id"
         const val COMMITS_URL = "commits_url"
         const val CONTRIBUTORS_URL = "contributors_url"
         const val HAS_ISSUES = "has_issues"

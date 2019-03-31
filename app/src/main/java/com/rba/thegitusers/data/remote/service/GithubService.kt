@@ -24,7 +24,7 @@ interface GithubService {
     ): Observable<List<Contributor>>
 
     @GET("users/{loginName}/repos")
-    fun getContributorRepos(@Path("loginName") loginName: String): Observable<RepositoriesResponseBody>
+    fun getContributorRepos(@Path("loginName") loginName: String): Observable<List<Repository>>
 }
 
 

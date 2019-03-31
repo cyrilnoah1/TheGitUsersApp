@@ -15,10 +15,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 
 import com.rba.thegitusers.R
-import com.rba.thegitusers.common.BUNDLE_REPO_FULL_NAME
-import com.rba.thegitusers.common.BUNDLE_REPO_HTML_LINK
-import com.rba.thegitusers.common.BUNDLE_REPO_ID
-import com.rba.thegitusers.common.EMPTY_STRING
+import com.rba.thegitusers.common.*
 import com.rba.thegitusers.data.local.models.Contributor
 import com.rba.thegitusers.databinding.FragmentRepositoryBinding
 import com.rba.thegitusers.features.HomeActivity
@@ -98,7 +95,10 @@ class RepositoryFragment : Fragment(), ContributorsAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(contributor: Contributor) {
-
+        val data = Bundle()
+        data.putString(BUNDLE_CONTRIB_LOGIN_NAME, contributor.loginName)
+        data.putInt(BUNDLE_CONTRIB_ID, contributor.id)
+        findNavController().navigate(R.id.action_repositoryFragment_to_contributorFragment, data)
     }
 
     private fun displayError(message: String): Toast {

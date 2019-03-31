@@ -14,4 +14,6 @@
     <string name="contributors_title">Contributors</string>
     <string name="repository_title">Repository</string>
     <string name="project_link">Project Link</string>
+    <string name="repo_list_title">Repo List</string>
+    <string name="contributor_title">Contributor</string>
 </resources>
